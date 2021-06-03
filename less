@@ -1,0 +1,69 @@
+// https://github.com/code4mk/less-cheatsheet
+// Variables
+@width: 10px;
+@height: @width + 10px;
+@import "./main2.less"; // library.less
+
+#header {
+    width: @width;
+    height: @height;
+  }
+// Mixins
+  .bordered(){
+    border-top: dotted 1px black;
+    border-bottom: solid 2px black;
+  }
+  #menu a {
+    color: #111;
+    .bordered();
+  }
+  // Nesting
+  #header {
+    color: black;
+    .navigation {
+      font-size: 12px;
+    }
+    .logo {
+      width: 300px;
+    }
+  }
+
+// Maps
+  #colors() {
+    primary: blue;
+    secondary: green;
+  }
+  
+  .button {
+    color: #colors[primary];
+    border: 1px solid #colors[secondary];
+  }
+  // inter 
+  @xx:xxx;
+  .@{xx}{
+      color: red;
+  }
+  .colorx{
+      &:hover{
+          color: #095;
+      }
+      &__color{
+          color: blue;
+      }
+  }
+
+  @bg: black;
+@bg-light: @bg;
+
+div {
+  color: if(@bg-light, black, white);
+}
+// loop
+@iterations: 5;
+.span-loop (@i) when (@i > 0) {
+    .span-@{i} {
+        width: ~"@{i}%";
+    }
+    .span-loop(@i - 1);
+}
+.span-loop (@iterations);
